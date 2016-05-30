@@ -9,7 +9,7 @@ def readfile():
     file = open("optdigits.tra", 'r')
     lines = file.readlines()
     file.close()
-    digitdata= np.zeros((64, 389))
+    digitdata = np.zeros((64, 389))
     k = 0
     for i in range(len(lines)):
         line = lines[i]
@@ -41,25 +41,14 @@ if __name__ == "__main__":
     plt.plot(x, y, '*r', label="pca point")
     plt.show()
     plt.figure(2)
-    #pcadata = pcadata.reshape((8*v.shape[0], 8))
     num = 5
-    #result = np.zeros(((num+1)*8, (num+1)*8))
     for i in range(25):
         pcasample = pcadata[:, i]
         pcasample = pcasample.reshape((8, 8))
-        a = i//num
+        a = i // num
         b = i % num
         plt.subplot(5, 5, i)
-        #result[a*8:(a*8+8), b*8:(b*8+8)] = pcasample
         imgplot = plt.imshow(pcasample, cmap=plt.cm.Greys_r)
     plt.show()
-
-    #from sklearn.datasets import load_digits
-    #digits = load_digits()
-    #print(digits.data.shape)
-    #import pylab as pl
-    #pl.gray()
-    #pl.matshow(digits.images[0])
-    #pl.show()
 
 

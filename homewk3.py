@@ -16,8 +16,6 @@ def generate2dgauss(u, s, n):
         y1 = np.random.normal(0, 1, n[i])
         x1 = s[i][0]*x1+u[i][0]
         y1 = s[i][1]*y1+u[i][1]
-        #x2 = np.random.normal(0, 1, n[1])
-        #y2 = np.random.normal(0, 1, n[1])
         x[cnt:cnt+n[i]] = x1
         y[cnt:cnt+n[i]] = y1
         labels[cnt:cnt+n[i]] = i
@@ -29,12 +27,7 @@ def generate2dgauss(u, s, n):
     for k, col in zip(range(len(n)), colors):
         my_members = labels == k
         plt.plot(x[my_members], y[my_members], col + '.')
-        #plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
-        #        markeredgecolor='k', markersize=14)
     plt.show()
-    #plt.figure(1)
-    #plt.plot(x, y, "*")
-    #plt.show()
     return x, y
 class EM(object):
     def __init__(self, gnum, x, y):
@@ -63,7 +56,6 @@ class EM(object):
         for i in range(self.n):
             px = np.zeros(self.gnum)
             py = np.zeros(self.gnum)
-            #p = np.zeros(self.gnum)
             for j in range(self.gnum):
                 px[j] = norm.pdf(self.x[i], self.u[j, 0], self.s[j, 0])
                 py[j] = norm.pdf(self.y[i], self.u[j, 1], self.s[j, 1])
@@ -97,8 +89,6 @@ class EM(object):
         for k, col in zip(range(self.gnum), colors):
             my_members = labels == k
             plt.plot(self.x[my_members], self.y[my_members], col + '.')
-            #plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
-            #        markeredgecolor='k', markersize=14)
         plt.show()
         print(self.u)
         print(self.s)
@@ -108,8 +98,6 @@ class EM(object):
 if __name__ == "__main__":
     [x, y] = generate2dgauss([[0, 2], [10, 13], [5, 5], [5, 20]], [[3, 2], [4, 4], [2, 3], [3, 5]], [222, 150, 200, 250])
     em = EM(4, x, y)
-    #[x, y] = generate2dgauss([[0, 2], [10, 13]], [[3, 2], [4, 4]], [222, 150])
-    #em = EM(2, x, y)
     em.opt(20)
     em.plotresult()
 
