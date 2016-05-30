@@ -9,7 +9,7 @@ def readfile():
     file = open("optdigits.tra", 'r')
     lines = file.readlines()
     file.close()
-    digitdata = np.zeros((64, 389))
+    digitdata= np.zeros((64, 389))
     k = 0
     for i in range(len(lines)):
         line = lines[i]
